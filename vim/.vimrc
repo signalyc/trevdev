@@ -26,6 +26,10 @@ filetype plugin on
 	Bundle 'vim-scripts/applescript.vim'
 	Bundle 'vim-scripts/localvimrc'
 	Bundle 'xsbeats/vim-blade'
+	Bundle 'vim-scripts/Mark'
+	Bundle 'inkarkat/vim-ingo-library'
+	Bundle 'fholgado/minibufexpl.vim'
+	Bundle 'plasticboy/vim-markdown'
 	"Bundle 'altercation/vim-colors-solarized'
 	"Bundle 'flazz/vim-colorschemes'
 	"Bundle 'nathanaelkane/vim-indent-guides'
@@ -78,7 +82,10 @@ autocmd BufWinLeave * call clearmatches()
 let @t = ':Tabularize /\(=>\|=\)' "For lining up => and =
 
 " Key mappings
-	let mapleader = ","
+	let mapleader = ";"
+    map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
+    nmap <Leader>w :w<CR>
+    nmap <Leader>b :b#<CR>
 
 	map <C-j> <C-W>j
 	map <C-k> <C-W>k
@@ -139,7 +146,8 @@ let @t = ':Tabularize /\(=>\|=\)' "For lining up => and =
 
 " Plugins
 	" Nerd Tree
-	nmap <C-n> :NERDTreeToggle<CR>
+	"nmap <C-n> :NERDTreeToggle<CR>
+    nmap <Leader>fl :NERDTreeToggle<CR>
 	let NERDTreeDirArrows=0
 	let NERDTreeShowHidden=1
 	" Quit nerdtree if it's the last open
@@ -181,3 +189,28 @@ let @t = ':Tabularize /\(=>\|=\)' "For lining up => and =
 	" disable for angular
 	let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 	let g:loaded_syntastic_php_phpcs_checker = 1
+
+    set tags=tags;
+    nmap <Leader>ta :set tags+=./tags<CR>
+    nmap <Leader>tc :cs add ./cscope.out<CR>
+
+    let g:mwHistAdd = '/@'
+    let g:mwAutoLoadMarks = 1
+    nmap <Leader>N :MarkClear<CR>
+    nmap <Leader>M :marks<CR>
+    nmap <Leader>5 :buffers<CR>:buffer<Space>
+
+    nmap <leader>ss :cs find s <C-R>=expand("<cword>")<cr><cr>
+    nmap <leader>sg :cs find g <C-R>=expand("<cword>")<cr><cr>
+    nmap <leader>sc :cs find c <C-R>=expand("<cword>")<cr><cr>
+    nmap <leader>st :cs find t <C-R>=expand("<cword>")<cr><cr>
+    nmap <leader>se :cs find e <C-R>=expand("<cword>")<cr><cr>
+    nmap <leader>sf :cs find f <C-R>=expand("<cfile>")<cr><cr>
+    nmap <leader>si :cs find i <C-R>=expand("<cfile>")<cr><cr>
+    nmap <leader>sd :cs find d <C-R>=expand("<cword>")<cr><cr>
+
+    nnoremap nw <C-W><C-W>
+    nnoremap <Leader>lw <C-W>l
+    nnoremap <Leader>hw <C-W>h
+    nnoremap <Leader>kw <C-W>k
+    nnoremap <Leader>jw <C-W>j
